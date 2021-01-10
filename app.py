@@ -3,6 +3,8 @@ from src.models import Transaction
 from src.rules import RuleEngine
 app = Flask(__name__)
 engine = RuleEngine()
+@app.route('/health')
+def health(): return 'OK'
 @app.route('/check', methods=['POST'])
 def check():
     data = request.json
