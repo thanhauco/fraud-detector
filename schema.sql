@@ -1,0 +1,1 @@
+CREATE TABLE transactions (id INTEGER PRIMARY KEY, amount REAL, location TEXT, is_fraud INTEGER, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);
