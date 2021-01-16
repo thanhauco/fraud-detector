@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify
 from src.models import Transaction
 from src.rules import RuleEngine
+from src.db import init_db
+import os
 app = Flask(__name__)
+if not os.path.exists('fraud.db'): init_db()
 engine = RuleEngine()
 @app.route('/health')
 def health(): return 'OK'
