@@ -22,4 +22,9 @@ def check():
     with get_db() as conn:
         conn.execute('INSERT INTO transactions (amount, location, is_fraud) VALUES (?, ?, ?)', (tx.amount, tx.location, 1 if is_fraud else 0))
     return jsonify({'fraud': bool(is_fraud)})
+@app.route('/feedback', methods=['POST'])
+def feedback():
+    data = request.json
+    # Update label logic here
+    return 'OK'
 if __name__ == '__main__': app.run()
