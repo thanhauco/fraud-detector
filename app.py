@@ -25,6 +25,7 @@ def check():
 @app.route('/feedback', methods=['POST'])
 def feedback():
     data = request.json
-    # Update label logic here
+    with get_db() as conn:
+        conn.execute('UPDATE transactions SET is_fraud = ? WHERE id = ?', (1 if data['is_fraud'] else 0, data['id']))
     return 'OK'
 if __name__ == '__main__': app.run()
