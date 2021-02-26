@@ -1,37 +1,11 @@
 from flask import Flask, request, jsonify
+from prometheus_client import generate_latest
+import os
+import pickle
 from src.models import Transaction
 from src.rules import RuleEngine
 from src.db import init_db, get_db
 from src.metrics import FRAUD_DETECTED, TX_PROCESSED
-from prometheus_client import generate_latest
-import os
-import pickle
+
 app = Flask(__name__)
-if not os.path.exists('fraud.db'): init_db()
-engine = RuleEngine()
-model = None
-if os.path.exists('model.pkl'):
-    with open('model.pkl', 'rb') as f: model = pickle.load(f)
-@app.route('/health')
-def health(): return 'OK'
-@app.route('/metrics')
-def metrics(): return generate_latest()
-@app.route('/check', methods=['POST'])
-def check():
-    TX_PROCESSED.inc()
-    data = request.json
-    tx = Transaction(data['amount'], data['location'], data.get('user_id'))
-    is_fraud = engine.check(tx)
-    if not is_fraud and model:
-        is_fraud = model.predict([[tx.amount]])[0] == 1
-    if is_fraud: FRAUD_DETECTED.inc()
-    with get_db() as conn:
-        conn.execute('INSERT INTO transactions (amount, location, is_fraud) VALUES (?, ?, ?)', (tx.amount, tx.location, 1 if is_fraud else 0))
-    return jsonify({'fraud': bool(is_fraud)})
-@app.route('/feedback', methods=['POST'])
-def feedback():
-    data = request.json
-    with get_db() as conn:
-        conn.execute('UPDATE transactions SET is_fraud = ? WHERE id = ?', (1 if data['is_fraud'] else 0, data['id']))
-    return 'OK'
-if __name__ == '__main__': app.run()
+# ... rest of app
