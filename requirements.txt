@@ -2,3 +2,5 @@ flask
 pandas
 scikit-learn
 prometheus_client
+celery
+redis
