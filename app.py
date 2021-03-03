@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify
-from prometheus_client import generate_latest
-import os
-import pickle
-from src.models import Transaction
-from src.rules import RuleEngine
-from src.db import init_db, get_db
-from src.metrics import FRAUD_DETECTED, TX_PROCESSED
-
+from src.tasks import analyze_heavy
+# ... imports
 app = Flask(__name__)
-# ... rest of app
+# ... setup
+@app.route('/check', methods=['POST'])
+def check():
+    # ... check logic
+    analyze_heavy.delay(123)
+    return jsonify({'fraud': False})
+if __name__ == '__main__': app.run()
