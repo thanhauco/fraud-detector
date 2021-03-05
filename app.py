@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify
-from src.tasks import analyze_heavy
+from src.auth import token_required
 # ... imports
 app = Flask(__name__)
 # ... setup
 @app.route('/check', methods=['POST'])
+@token_required
 def check():
-    # ... check logic
-    analyze_heavy.delay(123)
+    # ... logic
     return jsonify({'fraud': False})
 if __name__ == '__main__': app.run()
