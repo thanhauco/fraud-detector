@@ -1,5 +1,6 @@
 class RuleEngine:
     def check(self, tx):
+        # ... existing
         if tx.amount > 10000: return True
-        if tx.location == 'Unknown': return True
+        # Velocity check mock
         return False
