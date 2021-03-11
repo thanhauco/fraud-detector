@@ -1,11 +1,8 @@
-from flask import Flask, request, jsonify
-from src.auth import token_required
-# ... imports
+from flask import Flask
+from flask_swagger_ui import get_swaggerui_blueprint
 app = Flask(__name__)
-# ... setup
-@app.route('/check', methods=['POST'])
-@token_required
-def check():
-    # ... logic
-    return jsonify({'fraud': False})
-if __name__ == '__main__': app.run()
+SWAGGER_URL = '/api/docs'
+API_URL = '/static/swagger.json'
+swaggerui_blueprint = get_swaggerui_blueprint(SWAGGER_URL, API_URL)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
+# ... rest
