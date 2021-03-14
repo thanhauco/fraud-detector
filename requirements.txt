@@ -4,3 +4,5 @@ scikit-learn
 prometheus_client
 celery
 redis
+shap
+networkx
