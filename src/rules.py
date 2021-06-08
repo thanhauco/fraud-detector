@@ -1,6 +1,8 @@
-class RuleEngine:
+from abc import ABC, abstractmethod
+class Rule(ABC):
+    @abstractmethod
+    def check(self, tx) -> bool:
+        pass
+class AmountRule(Rule):
     def check(self, tx):
-        # ... existing
-        if tx.amount > 10000: return True
-        # Velocity check mock
-        return False
+        return tx.amount > 10000
