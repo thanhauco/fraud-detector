@@ -1,8 +1,5 @@
-from abc import ABC, abstractmethod
-class Rule(ABC):
-    @abstractmethod
-    def check(self, tx) -> bool:
-        pass
-class AmountRule(Rule):
+class RuleEngine:
+    def __init__(self):
+        self.rules = [AmountRule()]
     def check(self, tx):
-        return tx.amount > 10000
+        return any(r.check(tx) for r in self.rules)
