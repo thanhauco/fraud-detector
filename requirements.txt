@@ -1,8 +1,3 @@
 flask
-pandas
-scikit-learn
-prometheus_client
-celery
-redis
-shap
-networkx
+# ... existing
+sentry-sdk
