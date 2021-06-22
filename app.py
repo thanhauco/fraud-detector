@@ -1,4 +1,3 @@
-import sentry_sdk
-from sentry_sdk.integrations.flask import FlaskIntegration
-sentry_sdk.init(dsn="https://examplePublicKey@o0.ingest.sentry.io/0", integrations=[FlaskIntegration()])
-# ... rest
+from src.middleware import add_request_id
+# ... setup
+add_request_id(app)
