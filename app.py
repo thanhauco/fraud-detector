@@ -1,3 +1,5 @@
-from src.middleware import add_request_id
-# ... setup
-add_request_id(app)
+from src.logger import JsonFormatter
+import logging
+handler = logging.StreamHandler()
+handler.setFormatter(JsonFormatter())
+app.logger.addHandler(handler)
