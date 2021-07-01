@@ -1,5 +1,6 @@
-from src.logger import JsonFormatter
-import logging
-handler = logging.StreamHandler()
-handler.setFormatter(JsonFormatter())
-app.logger.addHandler(handler)
+from src.validation import validate_json
+# ... imports
+@app.route('/check', methods=['POST'])
+@validate_json
+def check():
+    # ... rest
