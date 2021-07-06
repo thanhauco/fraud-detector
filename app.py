@@ -1,6 +1,6 @@
-from src.validation import validate_json
+from src.limiter import is_limited
 # ... imports
-@app.route('/check', methods=['POST'])
-@validate_json
-def check():
-    # ... rest
+@app.before_request
+def limit_check():
+    if is_limited(request.remote_addr):
+        return jsonify({'error': 'Rate limit'}), 429
