@@ -1,3 +1,2 @@
-flask
-# ... existing
-sentry-sdk
+pytest
+# ... rest
