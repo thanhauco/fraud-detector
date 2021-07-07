@@ -1,6 +1,5 @@
-from src.limiter import is_limited
+import psutil
 # ... imports
-@app.before_request
-def limit_check():
-    if is_limited(request.remote_addr):
-        return jsonify({'error': 'Rate limit'}), 429
+@app.route('/health')
+def health():
+    return jsonify({'status': 'OK', 'cpu': psutil.cpu_percent()})
