@@ -1,7 +1,7 @@
-import unittest
-import requests
-class TestApi(unittest.TestCase):
-    def test_health(self):
-        r = requests.get('http://localhost:5000/health')
-        self.assertEqual(r.status_code, 200)
-if __name__ == '__main__': unittest.main()
+import pytest
+@pytest.fixture
+def client():
+    from app import app
+    return app.test_client()
+def test_health(client):
+    assert client.get('/health').status_code == 200
