@@ -1,16 +1,13 @@
 # Fraud Detector
 
 ## Features
-- Rule Engine
-- ML Model
-- SQLite
-- Prometheus
-- Celery Async Tasks
-- JWT Auth
-- Swagger
-- SHAP Explainability
-- Graph Detection
-- Streamlit Dashboard
+- Enterprise V3 Features
+- MLflow Tracking
+- FastAPI Migration
+- Pydantic Models
+- Bandit Security Scan
+- Type Hints
+- Black Formatting
 
 ## Status
-Enterprise Ready V3.
+Enterprise Scale V4.
