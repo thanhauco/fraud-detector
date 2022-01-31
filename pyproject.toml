@@ -1,4 +1,3 @@
-[tool.poetry]
+[tool.poetry.dependencies]
 # ... existing
-[tool.isort]
-profile = "black"
+uvicorn = "^0.15.0"
