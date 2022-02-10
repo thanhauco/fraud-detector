@@ -1,13 +1,12 @@
 # Fraud Detector
 
 ## Features
-- Enterprise V3 Features
-- MLflow Tracking
-- FastAPI Migration
-- Pydantic Models
-- Bandit Security Scan
-- Type Hints
-- Black Formatting
+- Enterprise V4 Features
+- Python 3.10
+- Poetry
+- GitHub Actions
+- Strict Typing
+- Async FastAPI
 
 ## Status
-Enterprise Scale V4.
+Modernized V5 (2022).
